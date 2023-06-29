@@ -20,6 +20,9 @@ export class User extends BaseEntity {
     @Column({default: null})
     password: string
 
+    @Column({default: false})
+    isAdmin: boolean
+
     @Column({
         type: "enum",
         name: "type_auth",
