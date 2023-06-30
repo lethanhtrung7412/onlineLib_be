@@ -20,7 +20,7 @@ export class User extends BaseEntity {
     @Column({default: null})
     password: string
 
-    @Column({default: false})
+    @Column({default: false, name: 'is_admin'})
     isAdmin: boolean
 
     @Column({
