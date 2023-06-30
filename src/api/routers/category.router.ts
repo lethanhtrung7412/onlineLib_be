@@ -5,6 +5,7 @@ import categoryHandler from "../handlers/category.handler";
 import { schema, validateHelper } from "../helper/validate.helper";
 import authMiddleware from "../middleware/auth.middleware";
 import { Category } from "../../database/entities/Category";
+import roleMiddleware from "../middleware/role.middleware";
 
 const router = Router();
 
@@ -16,7 +17,7 @@ class CategoryRouter implements IRouter {
         if (categories.length == 0) {
             return errorResponse(res, new Error("No category"), 205);
         }
-        return categories;
+        return successResponse(res, categories);
       } catch (error) {
         return errorResponse(res, error);
       }
@@ -41,6 +42,7 @@ class CategoryRouter implements IRouter {
     router.post(
         "/create",
         authMiddleware.authToken,
+        roleMiddleware.isAdmin,
         async(req, res) => {
             try {
                 const {name} = req.body
