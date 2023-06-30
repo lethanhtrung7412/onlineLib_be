@@ -2,6 +2,8 @@ import "reflect-metadata";
 import { Environment } from "../config/environment";
 import { DataSource } from "typeorm";
 import { User } from "./entities/User";
+import { Book } from "./entities/Book";
+import { Category } from "./entities/Category";
 
 Environment.setup()
 
@@ -13,7 +15,7 @@ export const PostgresDataSource = new DataSource({
     password: process.env.DATABASE_PASSWORD,
     database: process.env.DATABASE_NAME,
     
-    entities: [User],
+    entities: [User, Book, Category],
     synchronize: false,
     migrations: [__dirname + '/migrations/**/*.ts']
 })
