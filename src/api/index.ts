@@ -1,6 +1,7 @@
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import express, { Application, Request, Response } from "express";
+import morgan from "morgan";
 import BaseRouter from "./routers/index";
 interface IApi {
   server(): Promise<Application>;
@@ -13,6 +14,7 @@ class Api implements IApi {
     app.use(cookieParser())
     app.use(express.json({ limit: "100mb" }));
     app.use(express.urlencoded({ extended: true }));
+    app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
     app.use("/api/v1", BaseRouter.routes)
     app.get("/", (_req: Request, res: Response) => {
       res.send("Welcome to Online Library application!");
