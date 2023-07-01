@@ -1,4 +1,4 @@
-import {Column, Entity, JoinTable, ManyToMany} from "typeorm";
+import {Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany} from "typeorm";
 import { BaseEntity } from "./BaseEntity";
 import { Category } from "./Category";
 
@@ -16,7 +16,9 @@ export class Book extends BaseEntity {
     @Column({default: null})
     author: string
 
-    @ManyToMany(() => Category)
-    @JoinTable()
-    categories: Category[]
+    @ManyToOne(() => Category, (category) => category.books, {
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE"
+    })
+    category: Category
 }

@@ -1,4 +1,4 @@
-import { Repository } from "typeorm";
+import { DeleteResult, Repository, UpdateResult } from "typeorm";
 import ICategoryRepository from "./interface/icategory.repository";
 import { Category } from "../entities/Category";
 import { PostgresDataSource } from "../data-source";
@@ -11,7 +11,11 @@ class CategoryRepository implements ICategoryRepository {
     }
 
     getAllCategories(): Promise<Category[]> {
-        return this.repo.find()
+        return this.repo.find({
+            relations: {
+                books: true
+            }
+        })
     }
 
     getSpecificCategory(id: number): Promise<Category> {
@@ -28,6 +32,14 @@ class CategoryRepository implements ICategoryRepository {
 
     create(data: Category): Promise<Category> {
         return this.repo.save(data);
+    }
+
+    update(id: number, data: Category): Promise<UpdateResult> {
+        return this.repo.update(id, data)
+    }
+
+    delete(id: number): Promise<DeleteResult> {
+        return this.repo.delete(id);
     }
 }
 
