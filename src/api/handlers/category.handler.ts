@@ -1,3 +1,4 @@
+import { DeleteResult } from "typeorm";
 import { Category } from "../../database/entities/Category";
 import categoryRepository from "../../database/repository/category.repository";
 import { ICategoryHandler } from "./interface/icategory.handler";
@@ -34,6 +35,15 @@ class CategoryHandler implements ICategoryHandler {
     try {
       const newCategory = await categoryRepository.create(data);
       return newCategory;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  async delete(id: number): Promise<DeleteResult> {
+    try {
+      const deleteCategory = await categoryRepository.delete(id);
+      return deleteCategory
     } catch (error) {
       throw new Error(error);
     }
