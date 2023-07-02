@@ -1,6 +1,7 @@
 import {Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany} from "typeorm";
 import { BaseEntity } from "./BaseEntity";
 import { Category } from "./Category";
+import {Vote} from "./Vote";
 
 @Entity({name: "books"})
 export class Book extends BaseEntity {
@@ -21,4 +22,7 @@ export class Book extends BaseEntity {
         onUpdate: "CASCADE"
     })
     category: Category
+
+    @OneToMany(() => Vote, (vote) => vote.book)
+    votes: Vote[]
 }
