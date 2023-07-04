@@ -38,6 +38,23 @@ class AuthRouter implements IRouter {
         }
       }
     ),
+      /**
+       * @swagger
+       *
+       * /login:
+       *   post:
+       *     produces:
+       *       - application/json
+       *     parameters:
+       *       - name: username
+       *         in: formData
+       *         required: true
+       *         type: string
+       *       - name: password
+       *         in: formData
+       *         required: true
+       *         type: string
+       */
       router.post(
         "/login",
         validateHelper.validateBody(schema.authLogin),
