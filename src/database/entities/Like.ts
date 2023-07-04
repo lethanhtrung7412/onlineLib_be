@@ -3,13 +3,13 @@ import { User } from "./User";
 import { Book } from "./Book";
 import { BaseEntity } from "./BaseEntity";
 
-@Entity({ name: "votes" })
-export class Vote extends BaseEntity{
-  @ManyToOne(() => User, (user) => user.votes)
+@Entity({ name: "likes" })
+export class Like extends BaseEntity{
+  @ManyToOne(() => User, (user) => user.likes)
   @JoinColumn({ name: "user_id" })
   user: User;
 
-  @ManyToOne(() => Book, (book) => book.votes, {
+  @ManyToOne(() => Book, (book) => book.likes, {
     cascade: true,
     onDelete: "CASCADE",
     onUpdate: "CASCADE",

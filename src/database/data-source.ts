@@ -1,10 +1,10 @@
 import "reflect-metadata";
 import { Environment } from "../config/environment";
-import { DataSource } from "typeorm";
+import { DataSource, Like } from "typeorm";
 import { User } from "./entities/User";
 import { Book } from "./entities/Book";
 import { Category } from "./entities/Category";
-import { Vote } from "./entities/Vote";
+import { Like as LikeEntity } from "./entities/Like";
 
 Environment.setup();
 
@@ -16,7 +16,7 @@ export const PostgresDataSource = new DataSource({
   password: process.env.DATABASE_PASSWORD,
   database: process.env.DATABASE_NAME,
 
-  entities: [User, Book, Category, Vote],
+  entities: [User, Book, Category, LikeEntity],
   synchronize: false,
   migrations: [__dirname + "/migrations/**/*.ts"],
 });

@@ -18,7 +18,7 @@ export const schema = {
     authLogin: Joi.object({
         email: Joi.string().email().required(),
         password: Joi.string().required()
-    })
+    }),
 }
 
 export const validateHelper = {

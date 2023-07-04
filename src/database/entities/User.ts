@@ -1,6 +1,6 @@
 import { Column, Entity, OneToMany } from "typeorm";
 import { BaseEntity } from "./BaseEntity";
-import {Vote} from "./Vote";
+import {Like} from "./Like";
 
 export enum TypeAuth {
     LOCAL = "local",
@@ -35,6 +35,6 @@ export class User extends BaseEntity {
     @Column({default: null, name:"google_id"})
     googleId: string
 
-    @OneToMany(() => Vote, (vote) => vote.user)
-    votes: Vote[]
+    @OneToMany(() => Like, (like) => like.user)
+    likes: Like[]
 }
