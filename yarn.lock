@@ -1323,6 +1323,13 @@ isexe@^2.0.0:
   resolved "https://registry.yarnpkg.com/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
   integrity sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==
 
+joi-to-swagger@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/joi-to-swagger/-/joi-to-swagger-6.2.0.tgz#cc8b5291ac132eb5d5d1250fecdd6a2c3ed7a080"
+  integrity sha512-gwfIr1TsbbvZWozB/sFqiD7POFcXeaLKp6QJKGFkVgdom2ie/4f75QQAanZc/Wlbnyk66e6kTZXO28i6pN3oQA==
+  dependencies:
+    lodash "^4.17.21"
+
 joi@^17.9.2:
   version "17.9.2"
   resolved "https://registry.yarnpkg.com/joi/-/joi-17.9.2.tgz#8b2e4724188369f55451aebd1d0b1d9482470690"

@@ -16,6 +16,7 @@ class Api implements IApi {
     app.use(express.urlencoded({ extended: true }));
     app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
     app.use("/api/v1", BaseRouter.routes)
+
     app.get("/", (_req: Request, res: Response) => {
       res.send("Welcome to Online Library application!");
     });
