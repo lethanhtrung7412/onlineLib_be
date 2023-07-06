@@ -11,6 +11,19 @@ const router = Router();
 
 class CategoryRouter implements IRouter {
   get routes() {
+    /**
+         * @openapi
+         * /api/v1/category:
+         *   get:
+         *     tags:
+         *     - Category
+         *     description: Get all the categories
+         *     responses:
+         *       200:
+         *         description: Returns an array of categories
+         *       400:
+         *         description: Returns the error
+         */
     router.get("/", async (req, res) => {
       try {
         const categories = await categoryHandler.getAllCategories();

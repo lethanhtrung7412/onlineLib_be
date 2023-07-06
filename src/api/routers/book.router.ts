@@ -12,6 +12,19 @@ const router = Router();
 
 class BookRouter implements IRouter {
   get routes() {
+    /**
+         * @openapi
+         * /api/v1/book:
+         *   get:
+         *     tags:
+         *     - Book
+         *     description: Get all the book
+         *     responses:
+         *       200:
+         *         description: Returns an arrays of book with the status
+         *       400:
+         *         description: Return an error with the status of error
+         */
     router.get("/", async (req, res) => {
       try {
         const books = await bookHandler.getAllBook();
@@ -24,7 +37,34 @@ class BookRouter implements IRouter {
         return errorResponse(res, err);
       }
     });
-
+    /**
+     * @openapi
+     * /api/v1/book/create:
+     *  post:
+     *    tags:
+     *    - Book
+     *    description: Create a new book
+     *    requestBody:
+     *      required: true
+     *      content:
+     *        application/json:
+     *          schema:
+     *            type: object
+     *            $ref: "#/components/newBook"
+     *      encoding:
+     *         payload:
+     *          contentType: application/json
+     *      responses:
+     *         "200":
+     *            description: Returns an arrays of book with the status
+     *            content:
+     *              application/json:
+     *                schema:
+     *                  type: object
+     *                  $ref: "#/components/newBook"
+     *         "400":
+     *            description: Return an error with the status of error
+     */
     router.post(
       "/create",
       // authMiddleware.authToken,

@@ -12,6 +12,25 @@ import { IUserAuthInfoRequest } from "../types/interface";
 const router = Router();
 class AuthRouter implements IRouter {
   get routes() {
+    /**
+     * @openapi
+     * /api/v1/auth/register:
+     *  post:
+     *    tags:
+     *    - Authentication
+     *    description: Create a new user
+     *    requestBody:
+     *      required: true
+     *      content:
+     *        multipart/form-data:
+     *          schema:
+     *            $ref: "#/components/register"
+     *    response:
+     *      200:
+     *        descriptions: Return the user's info
+     *      400:
+     *        descriptions: Return the error
+     */
     router.post(
       "/register",
       validateHelper.validateBody(schema.authRegister),
@@ -38,23 +57,32 @@ class AuthRouter implements IRouter {
         }
       }
     ),
-      /**
-       * @swagger
-       *
-       * /login:
-       *   post:
-       *     produces:
-       *       - application/json
-       *     parameters:
-       *       - name: username
-       *         in: formData
-       *         required: true
-       *         type: string
-       *       - name: password
-       *         in: formData
-       *         required: true
-       *         type: string
-       */
+    /**
+     * @openapi
+     * /api/v1/auth/login:
+     *  post:
+     *    tags:
+     *    - Authentication
+     *    description: Login an existing user
+     *    requestBody:
+     *      required: true
+     *      content:
+     *        application/json:
+     *          schema:
+     *            type: object
+     *            $ref: "#/components/login"
+     *      encoding:
+     *         payload:
+     *          contentType: application/json
+     *    response:
+     *      200:
+     *        descriptions: Return the user's info
+     *        content:
+     *          schema:
+     *            $ref: "#/components/login"
+     *      400:
+     *        descriptions: Return the error
+     */
       router.post(
         "/login",
         validateHelper.validateBody(schema.authLogin),
@@ -95,6 +123,19 @@ class AuthRouter implements IRouter {
         }
       );
 
+    /**
+     * @openapi
+     * /api/v1/auth/logout:
+     *  post:
+     *    tags:
+     *    - Authentication
+     *    description: Logging user out
+     *    response:
+     *      200:
+     *        descriptions: Log out success
+     *      400:
+     *        descriptions: Return the error
+     */
     router.post("/logout", async (req, res) => {
       res.cookie("jwt", "", {
         httpOnly: true,
